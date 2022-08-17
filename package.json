@@ -7,9 +7,9 @@
     "bootstrap-db": "ts-node src/bin/bootstrapDatabase.ts",
     "build": "tsc",
     "lint": "prettier --write . && eslint . --fix --ext ts",
-    "start-dev": "npm run bootstrap-db && nodemon src/start.ts",
+    "start-dev": "nodemon src/start.ts",
     "start": "node lib/start.js",
-    "test": "mocha --timeout=10000 test/*.test.ts test/**/*.test.ts --require ts-node/register --recursive --prof --ui tdd --throw-deprecation"
+    "test": "mocha --timeout=10000 test/setup-tests.ts test/tests/*.test.ts test/tests/**/*.test.ts --require ts-node/register --recursive --prof --ui tdd --throw-deprecation"
   },
   "repository": {
     "type": "git",
@@ -22,11 +22,13 @@
   },
   "homepage": "https://github.com/drigberg/chess_api_poc#readme",
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/body-parser": "^1.19.2",
     "@types/chai": "^4.3.3",
     "@types/express": "^4.17.13",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.7.1",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
     "chai": "^4.3.6",
@@ -43,10 +45,12 @@
     "typescript-eslint": "^0.0.1-alpha.0"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "body-parser": "^1.20.0",
     "express": "^4.18.1",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.7"
+    "typeorm": "^0.3.7",
+    "uuid": "^8.3.2"
   }
 }

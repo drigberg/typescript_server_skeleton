@@ -4,7 +4,7 @@ import express from 'express';
 import { errorHandler } from './errors';
 import routes from './routes';
 
-import type { Application } from 'express';
+import type { Application, Request, Response } from 'express';
 import type { Server } from 'http';
 
 /**
@@ -18,6 +18,10 @@ function createApp(): Application {
 
   // API routes
   app.use('/api/things', routes.things);
+
+  app.get('/ping', (_req: Request, res: Response) => {
+    res.json({ ping: 'pong' });
+  });
 
   // Error handler
   app.use(errorHandler);

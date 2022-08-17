@@ -1,0 +1,4 @@
+version: '3'
+services:
+  ts-server:
+    command: npm run test

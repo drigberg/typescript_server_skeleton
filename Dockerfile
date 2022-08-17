@@ -14,9 +14,3 @@ RUN if [ "$ENVIRONMENT" = "PROD" ] ; then npm install --production; else npm ins
 RUN if [ "$ENVIRONMENT" = "PROD" ] ; then npm run build; fi
 
 EXPOSE 9001
-
-# In dev mode, use ts-node
-CMD if [ "$ENVIRONMENT" = "PROD" ] ; then npm run start ; \
-    else npm run start-dev; \
-    fi
-
