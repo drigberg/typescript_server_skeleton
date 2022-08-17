@@ -27,7 +27,13 @@ async function fetchMany(): Promise<Array<Thing>> {
   return things;
 }
 
+async function deleteAll(): Promise<void> {
+  const things = await fetchMany();
+  await repository.remove(things);
+}
+
 export default {
   create,
+  deleteAll,
   fetchMany,
 };

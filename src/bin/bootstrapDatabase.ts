@@ -12,7 +12,7 @@ async function bootstrap(): Promise<Testdata> {
 
   await console.log('Deleting existing data...');
 
-  // TOOD: delete existing data
+  await thingsCtrl.deleteAll();
 
   console.info('Creating testdata...');
 
