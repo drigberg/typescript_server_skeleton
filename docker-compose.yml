@@ -1,6 +1,6 @@
 version: '3'
 services:
-  chess-api:
+  ts-server:
     build:
       context: .
     volumes:
@@ -8,17 +8,21 @@ services:
     ports:
       - 9001:9001
     links:
-      - mongo
+      - database
     depends_on:
-      - mongo
+      - database
     environment:
-      MONGODB_USERNAME: root
-      MONGODB_PASSWORD: s7aSm5xEjF7E37ABp3he
-      MONGODB_URL: mongodb://root:s7aSm5xEjF7E37ABp3he@mongo:27017/
-  mongo:
-    image: mongo:5.0
-    container_name: mongo
+      DB_NAME: things
+      DB_USER: admin_user
+      DB_PASSWORD: s7aSm5xEjF7E37ABp3he
+      DB_HOST: database
+  database:
+    image: postgres:12
+    container_name: database
     restart: always
+    ports:
+      - 5432:5432
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: s7aSm5xEjF7E37ABp3he
+      POSTGRES_DB: things
+      POSTGRES_USER: admin_user
+      POSTGRES_PASSWORD: s7aSm5xEjF7E37ABp3he

@@ -13,7 +13,10 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ES2017"
+    "strictPropertyInitialization": false,
+    "target": "ES6",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "exclude": ["node_modules", "lib", "test"],
   "include": ["src"],

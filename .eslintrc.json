@@ -2,10 +2,11 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript"
   ],
-  "plugins": ["@typescript-eslint", "import"],
+  "plugins": ["@typescript-eslint", "prettier", "import"],
   "parser": "@typescript-eslint/parser",
   "root": true,
   "globals": {
@@ -58,13 +59,6 @@
     ],
     "no-unused-expressions": 2,
     "no-useless-return": 2,
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
     "require-await": 2,
     "no-const-assign": 2,
     "no-dupe-class-members": 2,
