@@ -1,0 +1,47 @@
+{
+  "name": "node_sql_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bootstrap-db": "ts-node src/bin/bootstrapDatabase.ts",
+    "build": "tsc",
+    "lint": "prettier --write . && eslint . --fix --ext ts",
+    "start-dev": "npm run bootstrap-db && nodemon src/start.ts",
+    "start": "node lib/start.js",
+    "test": "mocha --timeout=10000 tests/*.test.ts tests/**/*.test.ts --require ts-node/register --recursive --prof --ui tdd --throw-deprecation"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drigberg/chess_api_poc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drigberg/chess_api_poc/issues"
+  },
+  "homepage": "https://github.com/drigberg/chess_api_poc#readme",
+  "devDependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/chai": "^4.3.3",
+    "@types/express": "^4.17.13",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^18.7.1",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "chai": "^4.3.6",
+    "eslint": "^8.21.0",
+    "eslint-import-resolver-typescript": "^3.4.1",
+    "eslint-plugin-import": "^2.26.0",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4",
+    "typescript-eslint": "^0.0.1-alpha.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1"
+  }
+}
