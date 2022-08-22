@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 
+import Category from './entities/Category';
 import Thing from './entities/Thing';
 
 const DB_NAME = process.env.DB_NAME;
@@ -17,7 +18,7 @@ export const AppDataSource = new DataSource({
   database: DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [Thing],
+  entities: [Category, Thing],
   migrations: [],
   subscribers: [],
 });

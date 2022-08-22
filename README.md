@@ -2,8 +2,18 @@
 
 ## Usage
 
+### Starting the app
+
 ```bash
 docker-compose up
+```
+
+### Creating testdata
+
+While the app is running:
+
+```bash
+docker-compose exec app_meet npm run bootstrap-db
 ```
 
 ## Testing

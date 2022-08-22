@@ -1,4 +1,5 @@
 import { createApp, startServer } from './app';
+import logger from './logger';
 
 // Create app
 const app = createApp();
@@ -13,9 +14,9 @@ const PORT =
 // Start server
 startServer(app, PORT)
   .then(() => {
-    console.info(`App is running on port ${PORT}`);
+    logger.info(`App is running on port ${PORT}`);
   })
   .catch((err) => {
-    console.info(`Error on server start: ${err}`);
+    logger.info(`Error on server start: ${err}`);
     process.exit(1);
   });

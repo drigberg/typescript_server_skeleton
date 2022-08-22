@@ -1,3 +1,5 @@
+import util from 'util';
+
 /**
  * Module
  */
@@ -29,6 +31,7 @@ const LEVEL_VALUES: { [key: string]: number } = {
 class Logger {
   _level!: Level;
   levels: LevelMap;
+
   /**
    * Constructor
    */
@@ -39,20 +42,22 @@ class Logger {
 
   /**
    * Logs content with label
-   * @param {Function} fn - console function
-   * @param {String} level - level text to output
-   * @param {String} text - content
    */
-  _log(fn: (text: string) => void, level: Level, text: string) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  _log(fn: (text: string) => void, level: Level, text: string, data?: any) {
     if (LEVEL_VALUES[this._level] <= LEVEL_VALUES[level]) {
       const memoryMB = process.memoryUsage().heapUsed / 1024 / 1024;
       const memoryMBRounded = Math.round(memoryMB * 10) / 10;
-      fn(`[${level}] [${memoryMBRounded} MB] ${text}`);
+      fn(
+        `[${level}] [${memoryMBRounded} MB] ${text} ${
+          data === undefined ? '' : util.inspect(data)
+        }`
+      );
     }
   }
 
   /**
-   * @param {String} level
+   * Sets log level
    */
   setLogLevel(level: Level): void {
     if (!Object.values(LEVELS).includes(level)) {
@@ -64,34 +69,34 @@ class Logger {
 
   /**
    * Log info
-   * @param {String} text
    */
-  info(text: string): void {
-    this._log(console.info, 'INFO', text);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  info(text: string, data?: any): void {
+    this._log(console.info, 'INFO', text, data);
   }
 
   /**
    * Log error
-   * @param {String} text
    */
-  error(text: string): void {
-    this._log(console.error, 'ERROR', text);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  error(text: string, data?: any): void {
+    this._log(console.error, 'ERROR', text, data);
   }
 
   /**
    * Log warning
-   * @param {String} text
    */
-  warn(text: string): void {
-    this._log(console.warn, 'WARN', text);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  warn(text: string, data?: any): void {
+    this._log(console.warn, 'WARN', text, data);
   }
 
   /**
    * Log debug message
-   * @param {String} text
    */
-  debug(text: string): void {
-    this._log(console.debug, 'DEBUG', text);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  debug(text: string, data?: any): void {
+    this._log(console.debug, 'DEBUG', text, data);
   }
 }
 

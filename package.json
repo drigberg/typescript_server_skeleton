@@ -9,7 +9,7 @@
     "lint": "prettier --write . && eslint . --fix --ext ts",
     "start-dev": "nodemon src/start.ts",
     "start": "node lib/start.js",
-    "test": "mocha --timeout=10000 test/setup-tests.ts test/tests/*.test.ts test/tests/**/*.test.ts --require ts-node/register --recursive --prof --ui tdd --throw-deprecation"
+    "test": "mocha --timeout=10000 src/test/setup-tests.ts src/test/tests/*.test.ts src/test/tests/**/*.test.ts --require ts-node/register --recursive --prof --ui tdd --throw-deprecation"
   },
   "repository": {
     "type": "git",
@@ -47,6 +47,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
+    "decoders": "^2.0.1",
     "express": "^4.18.1",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",

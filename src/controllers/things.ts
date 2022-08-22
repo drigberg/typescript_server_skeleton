@@ -1,22 +1,27 @@
 import { AppDataSource } from '../database/data-source';
+import Category from '../database/entities/Category';
 import Thing from '../database/entities/Thing';
 
 const repository = AppDataSource.getRepository(Thing);
 
 async function create({
-  firstName,
-  lastName,
-  age,
+  id,
+  name,
+  category,
 }: {
-  firstName: string;
-  lastName: string;
-  age: number;
+  id?: number;
+  name: string;
+  category: Category;
 }): Promise<Thing> {
   const thing = new Thing();
 
-  thing.firstName = firstName;
-  thing.lastName = lastName;
-  thing.age = age;
+  // Optionally set id
+  if (id) {
+    thing.id = id;
+  }
+
+  thing.name = name;
+  thing.category = category;
 
   await repository.save(thing);
   return thing;

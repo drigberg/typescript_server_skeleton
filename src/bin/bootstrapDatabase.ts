@@ -1,45 +1,26 @@
-import things from '../controllers/things';
 import { AppDataSource } from '../database/data-source';
+import logger from '../logger';
+import fixture from '../test/tests/things.fixture';
 
-import type Thing from '../database/entities/Thing';
+import type { Testdata } from '../test/tests/things.fixture';
 
-type Testdata = {
-  things: Array<Thing>;
-};
-
+/**
+ * Re-use our test fixture to create a standard set of test data
+ */
 async function bootstrap(): Promise<Testdata> {
   await AppDataSource.initialize();
-
-  await console.log('Deleting existing data...');
-
-  await things.deleteAll();
-
-  console.info('Creating testdata...');
-
-  console.info('Inserting a new thing into the database...');
-
-  const thing = await things.create({
-    firstName: 'Wendy',
-    lastName: 'Corduroy',
-    age: 17,
-  });
-  console.info('Saved a new thing!', { id: thing.id });
-
-  console.info('Loading things from the database...');
-
-  const thingsList = await things.fetchMany();
-
-  console.info('Loaded things!', things);
-
-  return { things: thingsList };
+  await fixture.tearDown();
+  const testdata = await fixture.setup();
+  return testdata;
 }
 
+logger.info('Resetting database...');
 bootstrap()
   .then((testdata) => {
-    console.info('Successfully boostrapped database!', testdata);
+    logger.info('Successfully boostrapped database!', testdata);
     process.exit(0);
   })
   .catch((err) => {
-    console.info('Error bootstrapping database', err);
+    logger.info('Error bootstrapping database', err);
     process.exit(1);
   });

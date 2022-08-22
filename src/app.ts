@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 
+import { AppDataSource } from './database/data-source';
 import { errorHandler } from './errors';
 import routes from './routes';
 
@@ -32,12 +33,16 @@ function createApp(): Application {
 /**
  * Starts server
  */
-function startServer(app: Application, port: number): Promise<Server> {
-  return new Promise((resolve) => {
+async function startServer(app: Application, port: number): Promise<Server> {
+  await AppDataSource.initialize();
+
+  const s: Server = await new Promise((resolve) => {
     const server = app.listen(port, () => {
       resolve(server);
     });
   });
+
+  return s;
 }
 
 /**

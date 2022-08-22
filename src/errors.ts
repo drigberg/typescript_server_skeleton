@@ -1,3 +1,5 @@
+import logger from './logger';
+
 import type { NextFunction, Request, Response } from 'express';
 
 /**
@@ -25,14 +27,14 @@ export function errorHandler(
   res: Response,
   next: NextFunction
 ): void {
-  console.error(err);
-
   if (res.headersSent) {
     return next(err);
   }
 
   const statusCode = err instanceof ApiError ? err.statusCode : 500;
   const message = err.message || 'Internal server error';
+
+  logger.error('Error in logger', { err });
 
   res.status(statusCode);
   res.json({ error: message });
