@@ -20,7 +20,7 @@ function createApp(): Application {
   // API routes
   app.use('/api/things', routes.things);
 
-  app.get('/ping', (_req: Request, res: Response) => {
+  app.get('/api/ping', (_req: Request, res: Response) => {
     res.json({ ping: 'pong' });
   });
 

@@ -3,6 +3,7 @@ import { Router } from 'express';
 
 import categories from '../controllers/categories';
 import things from '../controllers/things';
+import { ApiError } from '../errors';
 
 import type { NextFunction, Request, Response } from 'express';
 
@@ -24,7 +25,11 @@ async function createThing(
   next: NextFunction
 ): Promise<void> {
   try {
-    const data = thingDataDecoder.verify(req.body);
+    const data = thingDataDecoder.value(req.body);
+    if (!data) {
+      throw new ApiError(400, 'Invalid post format');
+    }
+
     const category = await categories.getById(data.categoryId);
 
     const thing = await things.create({

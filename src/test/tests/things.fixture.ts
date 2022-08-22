@@ -23,28 +23,23 @@ export type Testdata = {
 async function setup(): Promise<Testdata> {
   const categoriesList = await Promise.all([
     categories.create({
-      id: 1,
       name: 'Static',
     }),
     categories.create({
-      id: 2,
       name: 'Dynamic',
     }),
   ]);
 
   const thingsList = await Promise.all([
     things.create({
-      id: 1,
       name: 'Teapot',
       category: categoriesList[0],
     }),
     things.create({
-      id: 2,
       name: 'Skeleton',
       category: categoriesList[0],
     }),
     things.create({
-      id: 3,
       name: 'Reanimated Skeleton',
       category: categoriesList[1],
     }),

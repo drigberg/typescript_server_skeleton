@@ -4,19 +4,8 @@ import { ApiError } from '../errors';
 
 const repository = AppDataSource.getRepository(Category);
 
-async function create({
-  id,
-  name,
-}: {
-  id?: number;
-  name: string;
-}): Promise<Category> {
+async function create({ name }: { name: string }): Promise<Category> {
   const category = new Category();
-
-  // Optionally set id
-  if (id) {
-    category.id = id;
-  }
 
   category.name = name;
 

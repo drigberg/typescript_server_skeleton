@@ -6,7 +6,7 @@ const BASEURL = 'http://localhost:9002';
 
 describe('Server', () => {
   it('Responds', async () => {
-    const response = await axios.get(`${BASEURL}/ping`);
+    const response = await axios.get(`${BASEURL}/api/ping`);
     expect(response.data.ping).to.equal('pong');
   });
 });
