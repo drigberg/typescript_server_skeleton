@@ -27,7 +27,7 @@ async function create({
 async function getById(id: number): Promise<Category> {
   const user = await repository.findOne({ where: { id } });
   if (user === null) {
-    throw new ApiError(404, 'Cannot find user by id');
+    throw new ApiError(404, 'Cannot find category by id');
   }
 
   return user;
